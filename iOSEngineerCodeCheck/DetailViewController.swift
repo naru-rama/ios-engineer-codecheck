@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
     
-    var searchViewController: SearchViewController?
+    weak var searchViewController: SearchViewController?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +46,11 @@ class DetailViewController: UIViewController {
               let imageURL = owner["avatar_url"] as? String,
               let url = URL(string: imageURL) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, let image = UIImage(data: data) else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let strongSelf = self, let data = data, let image = UIImage(data: data) else { return }
             
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                strongSelf.avatarImageView.image = image
             }
         }.resume()
     }
