@@ -38,6 +38,7 @@ class DetailViewController: UIViewController {
         let repository = searchViewController.repositories[searchViewController.selectedRepositoryIndex]
         nameLabel.text = repository["full_name"] as? String
         
+        //画像をダウンロードしてavatarImageViewで表示
         guard let owner = repository["owner"] as? [String: Any], let imageURL = owner["avatar_url"] as? String else { return }
         URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, response, error) in
             guard let data = data, let image = UIImage(data: data) else { return }
