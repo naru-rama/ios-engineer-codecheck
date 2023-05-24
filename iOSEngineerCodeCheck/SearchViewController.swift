@@ -67,8 +67,12 @@ extension SearchViewController: UISearchBarDelegate {
         guard let url = URL(string: requestURL) else { return }
         activeTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
-            guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
-            self.repositories = items
+            do {
+                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
+                self.repositories = items
+            } catch {
+                print("JSON parsing error: \(error.localizedDescription)")
+            }
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
