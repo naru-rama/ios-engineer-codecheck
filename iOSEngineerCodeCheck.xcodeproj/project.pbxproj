@@ -10,6 +10,8 @@
 		021331242A1E2ABB000229F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021331232A1E2ABB000229F1 /* Colors.xcassets */; };
 		021331262A1E3FF1000229F1 /* SearchViewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */; };
 		021331282A1E402D000229F1 /* SearchViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331272A1E402D000229F1 /* SearchViewController+TableView.swift */; };
+		0213312A2A1E42A7000229F1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331292A1E42A7000229F1 /* ImageDownloader.swift */; };
+		0213312C2A1E42FF000229F1 /* RepositoryDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0213312B2A1E42FF000229F1 /* RepositoryDataController.swift */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
@@ -42,6 +44,8 @@
 		021331232A1E2ABB000229F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchBar.swift"; sourceTree = "<group>"; };
 		021331272A1E402D000229F1 /* SearchViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TableView.swift"; sourceTree = "<group>"; };
+		021331292A1E42A7000229F1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		0213312B2A1E42FF000229F1 /* RepositoryDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDataController.swift; sourceTree = "<group>"; };
 		BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				021331232A1E2ABB000229F1 /* Colors.xcassets */,
 				021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */,
 				021331272A1E402D000229F1 /* SearchViewController+TableView.swift */,
+				021331292A1E42A7000229F1 /* ImageDownloader.swift */,
+				0213312B2A1E42FF000229F1 /* RepositoryDataController.swift */,
 			);
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";
@@ -275,10 +281,12 @@
 			files = (
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
+				0213312A2A1E42A7000229F1 /* ImageDownloader.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				021331262A1E3FF1000229F1 /* SearchViewController+SearchBar.swift in Sources */,
 				021331282A1E402D000229F1 /* SearchViewController+TableView.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
+				0213312C2A1E42FF000229F1 /* RepositoryDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
