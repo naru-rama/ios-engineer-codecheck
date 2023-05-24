@@ -1,5 +1,5 @@
 //
-//  ViewController2.swift
+//  DetailViewController.swift
 //  iOSEngineerCodeCheck
 //
 //  Created by 史 翔新 on 2020/04/21.
@@ -13,9 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var languageLabel: UILabel!
-    
     @IBOutlet weak var starCountLabel: UILabel!
     @IBOutlet weak var watcherCountLabel: UILabel!
     @IBOutlet weak var forkCountLabel: UILabel!
@@ -27,20 +25,17 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         let repository = searchViewController.repositories[searchViewController.selectedRepositoryIndex]
-        
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         watcherCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         issueCountLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
-        getImage()
         
+        getImage()
     }
     
     func getImage(){
-        
         let repository = searchViewController.repositories[searchViewController.selectedRepositoryIndex]
-        
         nameLabel.text = repository["full_name"] as? String
         
         guard let owner = repository["owner"] as? [String: Any], let imageURL = owner["avatar_url"] as? String else { return }
@@ -51,7 +46,6 @@ class DetailViewController: UIViewController {
                 self.avatarImageView.image = image
             }
         }.resume()
-        
     }
     
 }

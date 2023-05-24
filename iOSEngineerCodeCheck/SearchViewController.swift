@@ -37,7 +37,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         searchKeyword = searchBar.text!
         
         if searchKeyword.isEmpty {
@@ -55,16 +54,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         activeTask?.resume()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "Detail"{
+        if segue.identifier == "Detail" {
             let detail = segue.destination as! DetailViewController
             detail.searchViewController = self
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,21 +68,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         let repository = repositories[indexPath.row]
         cell.textLabel?.text = repository["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = repository["language"] as? String ?? ""
         cell.tag = indexPath.row
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         selectedRepositoryIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
-        
     }
     
 }
