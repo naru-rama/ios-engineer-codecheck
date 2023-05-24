@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
     
-    var searchViewController: SearchViewController?
+    weak var searchViewController: SearchViewController?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
         let repository = searchVC.repositories[searchVC.selectedRepositoryIndex]
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
-        watcherCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
+        watcherCountLabel.text = "\(repository["watchers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         issueCountLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
         
@@ -46,11 +46,11 @@ class DetailViewController: UIViewController {
               let imageURL = owner["avatar_url"] as? String,
               let url = URL(string: imageURL) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data, let image = UIImage(data: data) else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let strongSelf = self, let data = data, let image = UIImage(data: data) else { return }
             
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                strongSelf.avatarImageView.image = image
             }
         }.resume()
     }

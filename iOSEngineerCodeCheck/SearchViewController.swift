@@ -32,7 +32,7 @@ class SearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         let repository = repositories[indexPath.row]
         cell.textLabel?.text = repository["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = repository["language"] as? String ?? ""
@@ -65,17 +65,17 @@ extension SearchViewController: UISearchBarDelegate {
         //GitHub APIからJSONファイルを取得し、リポジトリの情報をrepositoriesに格納
         let requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
         guard let url = URL(string: requestURL) else { return }
-        activeTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
+        activeTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let strongSelf = self, let data = data else { return }
             do {
                 guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
-                self.repositories = items
+                strongSelf.repositories = items
             } catch {
                 print("JSON parsing error: \(error.localizedDescription)")
             }
             
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                strongSelf.tableView.reloadData()
             }
         }
         activeTask?.resume()
