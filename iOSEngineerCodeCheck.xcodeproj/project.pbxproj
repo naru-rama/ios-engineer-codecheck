@@ -94,6 +94,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0213313F2A1E8889000229F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				021331312A1E4CFA000229F1 /* RepositoryData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		021331402A1E8899000229F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
+				021331372A1E7F06000229F1 /* SearchBarDelegate.swift */,
+				021331392A1E7FDF000229F1 /* TableViewDelegateAndDataSource.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		021331412A1E88C3000229F1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				021331292A1E42A7000229F1 /* ImageDownloader.swift */,
+				0213312F2A1E4CD7000229F1 /* RepositoryService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		021331422A1E89A1000229F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0213313B2A1E8633000229F1 /* SearchViewModel.swift */,
+				0213313D2A1E8666000229F1 /* DetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		BFD945D2244DC5E80012785A = {
 			isa = PBXGroup;
 			children = (
@@ -119,20 +156,15 @@
 			children = (
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
-				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
-				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
+				0213313F2A1E8889000229F1 /* Model */,
+				021331402A1E8899000229F1 /* View */,
+				021331422A1E89A1000229F1 /* ViewModel */,
+				021331412A1E88C3000229F1 /* Service */,
 				BFD945E4244DC5E80012785A /* Main.storyboard */,
-				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
 				BFD945EC244DC5EB0012785A /* Info.plist */,
 				021331232A1E2ABB000229F1 /* Colors.xcassets */,
-				021331292A1E42A7000229F1 /* ImageDownloader.swift */,
-				0213312F2A1E4CD7000229F1 /* RepositoryService.swift */,
-				021331312A1E4CFA000229F1 /* RepositoryData.swift */,
-				021331372A1E7F06000229F1 /* SearchBarDelegate.swift */,
-				021331392A1E7FDF000229F1 /* TableViewDelegateAndDataSource.swift */,
-				0213313B2A1E8633000229F1 /* SearchViewModel.swift */,
-				0213313D2A1E8666000229F1 /* DetailViewModel.swift */,
+				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 			);
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";

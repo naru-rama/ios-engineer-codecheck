@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailViewModel {
+    
     private let imageDownloader: ImageDownloader
     var item: Item?
     
@@ -20,4 +21,5 @@ class DetailViewModel {
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         imageDownloader.downloadImage(from: urlString, completion: completion)
     }
+    
 }

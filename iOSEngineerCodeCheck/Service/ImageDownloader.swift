@@ -9,6 +9,7 @@
 import UIKit
 
 class ImageDownloader {
+    
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         guard let url = URL(string: urlString) else {
             completion(nil)
@@ -25,4 +26,5 @@ class ImageDownloader {
             }
         }.resume()
     }
+    
 }

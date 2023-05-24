@@ -9,6 +9,7 @@
 import Foundation
 
 class SearchViewModel {
+    
     private let repositoryService: RepositoryService
     var items: [Item] = []
     var selectedRepositoryIndex: Int = 0
@@ -32,4 +33,5 @@ class SearchViewModel {
     func selectedItem() -> Item {
         return items[selectedRepositoryIndex]
     }
+    
 }

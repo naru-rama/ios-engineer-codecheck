@@ -29,4 +29,5 @@ class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableView
         viewController?.viewModel.selectedRepositoryIndex = indexPath.row
         viewController?.performSegue(withIdentifier: "Detail", sender: self)
     }
+    
 }
