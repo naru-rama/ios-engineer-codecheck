@@ -19,12 +19,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
     
-    var searchViewController: SearchViewController!
+    var searchViewController: SearchViewController?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let repository = searchViewController.repositories[searchViewController.selectedRepositoryIndex]
+        guard let searchVC = searchViewController else { return }
+        
+        let repository = searchVC.repositories[searchVC.selectedRepositoryIndex]
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         watcherCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
@@ -35,12 +37,16 @@ class DetailViewController: UIViewController {
     }
     
     func getImage(){
-        let repository = searchViewController.repositories[searchViewController.selectedRepositoryIndex]
+        guard let searchVC = searchViewController else { return }
+        let repository = searchVC.repositories[searchVC.selectedRepositoryIndex]
         nameLabel.text = repository["full_name"] as? String
         
         //画像をダウンロードしてavatarImageViewで表示
-        guard let owner = repository["owner"] as? [String: Any], let imageURL = owner["avatar_url"] as? String else { return }
-        URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, response, error) in
+        guard let owner = repository["owner"] as? [String: Any],
+              let imageURL = owner["avatar_url"] as? String,
+              let url = URL(string: imageURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, let image = UIImage(data: data) else { return }
             
             DispatchQueue.main.async {
