@@ -18,22 +18,18 @@ class SearchBarDelegate: NSObject, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewController?.activeTask?.cancel()
+        viewController?.viewModel.items.removeAll()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
-        let repositoryService = RepositoryService.shared
-        repositoryService.fetchRepositoryData(keyword: searchKeyword) { [weak self] (result) in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    self?.viewController?.items = data.items
-                    self?.viewController?.tableView.reloadData()
-                }
-            case .failure(let error):
+        viewController?.viewModel.fetchRepositoryData(keyword: searchKeyword) { (error) in
+            if let error = error {
                 print(error)
+            }
+            DispatchQueue.main.async {
+                self.viewController?.tableView.reloadData()
             }
         }
     }
