@@ -158,6 +158,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="tzx-WV-65J"/>
                                 <exclude reference="qIV-Ti-swi"/>
                                 <exclude reference="3db-ns-RlT"/>
                             </mask>
@@ -165,6 +166,7 @@
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="constraints">
                                 <exclude reference="IgU-EN-fM3"/>
+                                <include reference="tzx-WV-65J"/>
                                 <include reference="EMR-2C-CyU"/>
                                 <include reference="qIV-Ti-swi"/>
                                 <exclude reference="G2L-KM-330"/>

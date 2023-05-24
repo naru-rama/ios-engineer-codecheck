@@ -12,7 +12,7 @@ class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories: [[String: Any]] = []
+    var items: [Item] = []
     var activeTask: URLSessionTask?
     var selectedRepositoryIndex: Int = 0
     
@@ -24,7 +24,7 @@ class SearchViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detail = segue.destination as? DetailViewController else { return }
-        detail.searchViewController = self
+        detail.item = items[selectedRepositoryIndex]
     }
     
 }

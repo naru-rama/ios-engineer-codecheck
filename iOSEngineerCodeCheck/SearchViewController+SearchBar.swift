@@ -21,22 +21,16 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
-        //GitHub APIからJSONファイルを取得し、リポジトリの情報をrepositoriesに格納
-        let requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
-        guard let url = URL(string: requestURL) else { return }
-        activeTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let strongSelf = self, let data = data else { return }
-            do {
-                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
-                strongSelf.repositories = items
-            } catch {
-                print("JSON parsing error: \(error.localizedDescription)")
-            }
-            
-            DispatchQueue.main.async {
-                strongSelf.tableView.reloadData()
+        RepositoryService.fetchRepositoryData(keyword: searchKeyword) { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self?.items = data.items
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
-        activeTask?.resume()
     }
 }
