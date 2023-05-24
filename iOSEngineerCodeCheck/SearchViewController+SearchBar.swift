@@ -21,7 +21,8 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
-        RepositoryService.fetchRepositoryData(keyword: searchKeyword) { [weak self] (result) in
+        let repositoryService = RepositoryService.shared
+        repositoryService.fetchRepositoryData(keyword: searchKeyword) { [weak self] (result) in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {

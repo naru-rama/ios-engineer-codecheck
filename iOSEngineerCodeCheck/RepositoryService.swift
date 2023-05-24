@@ -9,17 +9,22 @@
 import Foundation
 
 class RepositoryService {
-    static func fetchRepositoryData(keyword: String, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
+    
+    static let shared = RepositoryService()
+    private var dataTask: URLSessionDataTask?
+
+    func fetchRepositoryData(keyword: String, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
         let urlString = "https://api.github.com/search/repositories?q=\(keyword)"
         guard let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+        dataTask?.cancel()
+        dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
                 return
             }
             guard let safeData = data else { return }
-            
+
             do {
                 let json = try JSONDecoder().decode(RepositoryData.self, from: safeData)
                 completion(.success(json))
@@ -27,6 +32,7 @@ class RepositoryService {
                 completion(.failure(error))
             }
         }
-        task.resume()
+        dataTask?.resume()
     }
+    
 }
