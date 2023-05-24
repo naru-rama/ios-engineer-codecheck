@@ -10,7 +10,7 @@ import UIKit
 
 class RepositoryCell: UITableViewCell {
     
-    @IBOutlet weak var avatarImageVIew: UIImageView!
+    @IBOutlet weak var searchImageView: UIImageView!
     
     @IBOutlet weak var languageTextLabel: UILabel!
     @IBOutlet weak var starTextLabel: UILabel!
@@ -19,6 +19,8 @@ class RepositoryCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.searchImageView.layer.cornerRadius = self.searchImageView.bounds.height / 2
+        self.searchImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

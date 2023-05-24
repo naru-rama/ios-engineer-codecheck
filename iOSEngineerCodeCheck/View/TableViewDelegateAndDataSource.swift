@@ -28,7 +28,7 @@ class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableView
         cell.issueTextLabel.text = String(repository.issueCount)
         
         imageDownloader.downloadImage(from: repository.owner.avatarUrl) { image in
-            cell.avatarImageVIew.image = image
+            cell.searchImageView.image = image
         }
         
         return cell

@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 5
         updateViewWithRepositoryData()
     }
     

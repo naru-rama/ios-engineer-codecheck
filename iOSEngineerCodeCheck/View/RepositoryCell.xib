@@ -121,10 +121,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="avatarImageVIew" destination="oY9-Wc-adM" id="F6g-ej-oaJ"/>
                 <outlet property="forkTextLabel" destination="nZF-zm-trL" id="oeL-HX-GOb"/>
                 <outlet property="issueTextLabel" destination="SyK-2M-2lX" id="ara-a2-9Il"/>
                 <outlet property="languageTextLabel" destination="xKc-HR-Nzj" id="oId-6m-OBM"/>
+                <outlet property="searchImageView" destination="oY9-Wc-adM" id="F6g-ej-oaJ"/>
                 <outlet property="starTextLabel" destination="yBG-1b-L76" id="qtr-AS-pAf"/>
             </connections>
             <point key="canvasLocation" x="148.09160305343511" y="6.3380281690140849"/>
