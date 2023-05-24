@@ -43,16 +43,14 @@ class DetailViewController: UIViewController {
         
         nameLabel.text = repository["full_name"] as? String
         
-        if let owner = repository["owner"] as? [String: Any] {
-            if let avatarImageURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: avatarImageURL)!) { (data, response, error) in
-                    let image = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.avatarImageView.image = image
-                    }
-                }.resume()
+        guard let owner = repository["owner"] as? [String: Any], let imageURL = owner["avatar_url"] as? String else { return }
+        URLSession.shared.dataTask(with: URL(string: imageURL)!) { (data, response, error) in
+            guard let data = data, let image = UIImage(data: data) else { return }
+            
+            DispatchQueue.main.async {
+                self.avatarImageView.image = image
             }
-        }
+        }.resume()
         
     }
     
