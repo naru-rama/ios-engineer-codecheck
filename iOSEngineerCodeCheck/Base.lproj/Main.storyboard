@@ -75,8 +75,22 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iim-eb-8Ad">
                                 <rect key="frame" x="20" y="147" width="374" height="374"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="270" id="9Hm-U6-Ssn"/>
                                     <constraint firstAttribute="width" secondItem="Iim-eb-8Ad" secondAttribute="height" multiplier="1:1" id="CoT-OC-9DA"/>
+                                    <constraint firstAttribute="width" constant="270" id="Hpe-pe-rHR"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9Hm-U6-Ssn"/>
+                                        <exclude reference="Hpe-pe-rHR"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="9Hm-U6-Ssn"/>
+                                        <include reference="Hpe-pe-rHR"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4q1-pG-WSB">
                                 <rect key="frame" x="181" y="549" width="52" height="33.5"/>
@@ -128,15 +142,36 @@
                         <viewLayoutGuide key="safeArea" id="srK-fe-i1b"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Iim-eb-8Ad" firstAttribute="leading" secondItem="srK-fe-i1b" secondAttribute="leading" constant="20" id="EMR-2C-CyU"/>
+                            <constraint firstItem="oOe-O2-3RS" firstAttribute="centerY" secondItem="srK-fe-i1b" secondAttribute="centerY" id="3db-ns-RlT"/>
+                            <constraint firstItem="Iim-eb-8Ad" firstAttribute="leading" secondItem="srK-fe-i1b" secondAttribute="leading" constant="20" id="EMR-2C-CyU">
+                                <variation key="heightClass=compact-widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstItem="4q1-pG-WSB" firstAttribute="top" secondItem="Iim-eb-8Ad" secondAttribute="bottom" constant="28" id="G2L-KM-330"/>
                             <constraint firstItem="4q1-pG-WSB" firstAttribute="centerX" secondItem="Iim-eb-8Ad" secondAttribute="centerX" id="Ght-Nb-HEu"/>
                             <constraint firstItem="srK-fe-i1b" firstAttribute="trailing" secondItem="Iim-eb-8Ad" secondAttribute="trailing" constant="20" id="IgU-EN-fM3"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="width" secondItem="Iim-eb-8Ad" secondAttribute="width" id="dPu-j0-Myp"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="top" secondItem="4q1-pG-WSB" secondAttribute="bottom" constant="17.5" id="jck-U6-F8A"/>
                             <constraint firstItem="oOe-O2-3RS" firstAttribute="centerX" secondItem="4q1-pG-WSB" secondAttribute="centerX" id="kVV-YK-ePr"/>
+                            <constraint firstItem="Iim-eb-8Ad" firstAttribute="centerY" secondItem="srK-fe-i1b" secondAttribute="centerY" id="qIV-Ti-swi"/>
                             <constraint firstItem="Iim-eb-8Ad" firstAttribute="centerY" secondItem="srK-fe-i1b" secondAttribute="centerY" multiplier="0.7" id="ruB-l0-4VM"/>
+                            <constraint firstItem="srK-fe-i1b" firstAttribute="trailing" secondItem="oOe-O2-3RS" secondAttribute="trailing" constant="10" id="tzx-WV-65J"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qIV-Ti-swi"/>
+                                <exclude reference="3db-ns-RlT"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="IgU-EN-fM3"/>
+                                <include reference="EMR-2C-CyU"/>
+                                <include reference="qIV-Ti-swi"/>
+                                <exclude reference="G2L-KM-330"/>
+                                <exclude reference="Ght-Nb-HEu"/>
+                                <include reference="3db-ns-RlT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="J6o-vL-S1z"/>
                     <connections>
