@@ -31,17 +31,21 @@ class DetailViewController: UIViewController {
         guard let safeItem = item else { return }
         
         nameLabel.text = safeItem.fullName
-        languageLabel.text = "Written in \(safeItem.language ?? "")"
-        starCountLabel.text = "\(safeItem.starCount) stars"
-        watcherCountLabel.text = "\(safeItem.watcherCount) watchers"
-        forkCountLabel.text = "\(safeItem.forkCount) forks"
-        issueCountLabel.text = "\(safeItem.issueCount) open issues"
+        setLabelText(label: languageLabel, text: safeItem.language ?? "", prefix: "Written in")
+        setLabelText(label: starCountLabel, text: "\(safeItem.starCount)", prefix: "stars")
+        setLabelText(label: watcherCountLabel, text: "\(safeItem.watcherCount)", prefix: "watchers")
+        setLabelText(label: forkCountLabel, text: "\(safeItem.forkCount)", prefix: "forks")
+        setLabelText(label: issueCountLabel, text: "\(safeItem.issueCount)", prefix: "open issues")
         
         let imageURL = safeItem.owner.avatarUrl
         imageDownloader.downloadImage(from: imageURL) { [weak self] (image) in
             guard let self = self else { return }
             self.avatarImageView.image = image
         }
+    }
+    
+    func setLabelText(label: UILabel, text: String, prefix: String) {
+        label.text = "\(text) \(prefix)"
     }
     
 }
