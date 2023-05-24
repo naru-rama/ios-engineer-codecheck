@@ -12,9 +12,8 @@ class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories: [[String: Any]]=[]
+    var repositories: [[String: Any]] = []
     var activeTask: URLSessionTask?
-    var searchKeyword: String!
     var requestURL: String!
     var selectedRepositoryIndex: Int!
     
@@ -25,10 +24,8 @@ class SearchViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail" {
-            let detail = segue.destination as! DetailViewController
-            detail.searchViewController = self
-        }
+        guard let detail = segue.destination as? DetailViewController else { return }
+        detail.searchViewController = self
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,15 +61,12 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchKeyword = searchBar.text!
-        
-        if searchKeyword.isEmpty {
-            return
-        }
+        guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
         //GitHub APIからJSONファイルを取得し、リポジトリの情報をrepositoriesに格納
-        requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword!)"
-        activeTask = URLSession.shared.dataTask(with: URL(string: requestURL)!) { (data, response, error) in
+        requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
+        guard let urlString = requestURL, let url = URL(string: urlString) else { return }
+        activeTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
             self.repositories = items
