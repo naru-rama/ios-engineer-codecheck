@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		021331242A1E2ABB000229F1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 021331232A1E2ABB000229F1 /* Colors.xcassets */; };
+		021331262A1E3FF1000229F1 /* SearchViewController+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */; };
+		021331282A1E402D000229F1 /* SearchViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331272A1E402D000229F1 /* SearchViewController+TableView.swift */; };
+		0213312A2A1E42A7000229F1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331292A1E42A7000229F1 /* ImageDownloader.swift */; };
+		021331302A1E4CD7000229F1 /* RepositoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0213312F2A1E4CD7000229F1 /* RepositoryService.swift */; };
+		021331322A1E4CFA000229F1 /* RepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331312A1E4CFA000229F1 /* RepositoryData.swift */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
@@ -38,6 +43,11 @@
 
 /* Begin PBXFileReference section */
 		021331232A1E2ABB000229F1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchBar.swift"; sourceTree = "<group>"; };
+		021331272A1E402D000229F1 /* SearchViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+TableView.swift"; sourceTree = "<group>"; };
+		021331292A1E42A7000229F1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		0213312F2A1E4CD7000229F1 /* RepositoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryService.swift; sourceTree = "<group>"; };
+		021331312A1E4CFA000229F1 /* RepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryData.swift; sourceTree = "<group>"; };
 		BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +122,11 @@
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
 				BFD945EC244DC5EB0012785A /* Info.plist */,
 				021331232A1E2ABB000229F1 /* Colors.xcassets */,
+				021331252A1E3FF1000229F1 /* SearchViewController+SearchBar.swift */,
+				021331272A1E402D000229F1 /* SearchViewController+TableView.swift */,
+				021331292A1E42A7000229F1 /* ImageDownloader.swift */,
+				0213312F2A1E4CD7000229F1 /* RepositoryService.swift */,
+				021331312A1E4CFA000229F1 /* RepositoryData.swift */,
 			);
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";
@@ -268,8 +283,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
+				021331322A1E4CFA000229F1 /* RepositoryData.swift in Sources */,
 				BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */,
+				0213312A2A1E42A7000229F1 /* ImageDownloader.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				021331262A1E3FF1000229F1 /* SearchViewController+SearchBar.swift in Sources */,
+				021331282A1E402D000229F1 /* SearchViewController+TableView.swift in Sources */,
+				021331302A1E4CD7000229F1 /* RepositoryService.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories: [[String: Any]] = []
+    var items: [Item] = []
     var activeTask: URLSessionTask?
     var selectedRepositoryIndex: Int = 0
     
@@ -24,60 +24,7 @@ class SearchViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detail = segue.destination as? DetailViewController else { return }
-        detail.searchViewController = self
+        detail.item = items[selectedRepositoryIndex]
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = repository["language"] as? String ?? ""
-        cell.tag = indexPath.row
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRepositoryIndex = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
-    }
-    
-}
-
-// MARK: - UISearchBarDelegate
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.text = ""
-        return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        activeTask?.cancel()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
-        
-        //GitHub APIからJSONファイルを取得し、リポジトリの情報をrepositoriesに格納
-        let requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
-        guard let url = URL(string: requestURL) else { return }
-        activeTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let strongSelf = self, let data = data else { return }
-            do {
-                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
-                strongSelf.repositories = items
-            } catch {
-                print("JSON parsing error: \(error.localizedDescription)")
-            }
-            
-            DispatchQueue.main.async {
-                strongSelf.tableView.reloadData()
-            }
-        }
-        activeTask?.resume()
-    }
 }
