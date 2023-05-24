@@ -14,8 +14,7 @@ class SearchViewController: UITableViewController {
     
     var repositories: [[String: Any]] = []
     var activeTask: URLSessionTask?
-    var requestURL: String!
-    var selectedRepositoryIndex: Int!
+    var selectedRepositoryIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +63,8 @@ extension SearchViewController: UISearchBarDelegate {
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
         //GitHub APIからJSONファイルを取得し、リポジトリの情報をrepositoriesに格納
-        requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
-        guard let urlString = requestURL, let url = URL(string: urlString) else { return }
+        let requestURL = "https://api.github.com/search/repositories?q=\(searchKeyword)"
+        guard let url = URL(string: requestURL) else { return }
         activeTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any], let items = jsonObject["items"] as? [[String: Any]] else { return }
