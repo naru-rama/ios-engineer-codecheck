@@ -16,10 +16,18 @@ class SearchViewController: UITableViewController {
     var activeTask: URLSessionTask?
     var selectedRepositoryIndex: Int = 0
     
+    let searchBarDelegate = SearchBarDelegate()
+    let tableViewDelegateAndDataSource = TableViewDelegateAndDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.text = "GitHubのリポジトリを検索できるよー"
-        searchBar.delegate = self
+        searchBarDelegate.viewController = self
+        searchBar.delegate = searchBarDelegate
+                
+        tableViewDelegateAndDataSource.viewController = self
+        tableView.delegate = tableViewDelegateAndDataSource
+        tableView.dataSource = tableViewDelegateAndDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

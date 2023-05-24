@@ -1,21 +1,24 @@
 //
-//  SearchViewController+SearchBar.swift
+//  SearchBarDelegate.swift
 //  iOSEngineerCodeCheck
 //
-//  Created by 中原護 on 2023/05/24.
+//  Created by 中原護 on 2023/05/25.
 //  Copyright © 2023 YUMEMI Inc. All rights reserved.
 //
 
 import UIKit
 
-extension SearchViewController: UISearchBarDelegate {
+class SearchBarDelegate: NSObject, UISearchBarDelegate {
+    
+    weak var viewController: SearchViewController?
+    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.text = ""
         return true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        activeTask?.cancel()
+        viewController?.activeTask?.cancel()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -26,12 +29,13 @@ extension SearchViewController: UISearchBarDelegate {
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {
-                    self?.items = data.items
-                    self?.tableView.reloadData()
+                    self?.viewController?.items = data.items
+                    self?.viewController?.tableView.reloadData()
                 }
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
 }
