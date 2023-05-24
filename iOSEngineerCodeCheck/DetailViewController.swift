@@ -19,8 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var issueCountLabel: UILabel!
     
-    var item: Item?
-    let imageDownloader = ImageDownloader()
+    var viewModel: DetailViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,7 @@ class DetailViewController: UIViewController {
     }
     
     func updateViewWithRepositoryData() {
-        guard let safeItem = item else { return }
+        guard let safeItem = viewModel?.item else { return }
             
         setupNameLabel(with: safeItem.fullName)
         setupLanguageLabel(with: safeItem.language)
@@ -64,9 +63,11 @@ class DetailViewController: UIViewController {
     }
     
     func setupAvatarImageView(with urlString: String) {
-        imageDownloader.downloadImage(from: urlString) { [weak self] (image) in
+        viewModel?.downloadImage(from: urlString) { [weak self] (image) in
             guard let self = self else { return }
-            self.avatarImageView.image = image
+            DispatchQueue.main.async {
+                self.avatarImageView.image = image
+            }
         }
     }
     

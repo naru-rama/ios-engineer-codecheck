@@ -12,10 +12,7 @@ class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var items: [Item] = []
-    var activeTask: URLSessionTask?
-    var selectedRepositoryIndex: Int = 0
-    
+    var viewModel = SearchViewModel()
     let searchBarDelegate = SearchBarDelegate()
     let tableViewDelegateAndDataSource = TableViewDelegateAndDataSource()
     
@@ -32,7 +29,7 @@ class SearchViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let detail = segue.destination as? DetailViewController else { return }
-        detail.item = items[selectedRepositoryIndex]
+        detail.viewModel = DetailViewModel(item: viewModel.selectedItem())
     }
     
 }

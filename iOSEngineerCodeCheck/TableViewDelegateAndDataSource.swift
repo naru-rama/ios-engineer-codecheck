@@ -13,12 +13,12 @@ class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableView
     weak var viewController: SearchViewController?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewController?.items.count ?? 0
+        return viewController?.viewModel.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        guard let repository = viewController?.items[indexPath.row] else { return cell }
+        guard let repository = viewController?.viewModel.items[indexPath.row] else { return cell }
         cell.textLabel?.text = repository.fullName
         cell.detailTextLabel?.text = repository.language
         cell.tag = indexPath.row
@@ -26,7 +26,7 @@ class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewController?.selectedRepositoryIndex = indexPath.row
+        viewController?.viewModel.selectedRepositoryIndex = indexPath.row
         viewController?.performSegue(withIdentifier: "Detail", sender: self)
     }
 }
