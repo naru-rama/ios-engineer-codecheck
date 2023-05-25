@@ -11,17 +11,26 @@ import UIKit
 class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     weak var viewController: SearchViewController?
+    let imageDownloader = ImageDownloader()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewController?.viewModel.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as? RepositoryCell else {
+            fatalError("The dequeued cell is not an instance of CustomTableViewCell.")
+        }
         guard let repository = viewController?.viewModel.items[indexPath.row] else { return cell }
-        cell.textLabel?.text = repository.fullName
-        cell.detailTextLabel?.text = repository.language
-        cell.tag = indexPath.row
+        cell.languageTextLabel.text = repository.fullName
+        cell.starTextLabel.text = String(repository.starCount)
+        cell.forkTextLabel.text = String(repository.forkCount)
+        cell.issueTextLabel.text = String(repository.issueCount)
+        
+        imageDownloader.downloadImage(from: repository.owner.avatarUrl) { image in
+            cell.searchImageView.image = image
+        }
+        
         return cell
     }
     

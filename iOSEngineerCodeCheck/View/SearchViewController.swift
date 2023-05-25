@@ -18,13 +18,16 @@ class SearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.text = "GitHubのリポジトリを検索できるよー"
+        searchBar.text = "GitHubのリポジトリ名を入力"
         searchBarDelegate.viewController = self
         searchBar.delegate = searchBarDelegate
                 
         tableViewDelegateAndDataSource.viewController = self
         tableView.delegate = tableViewDelegateAndDataSource
         tableView.dataSource = tableViewDelegateAndDataSource
+        
+        let nib = UINib(nibName: "RepositoryCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DetailCell")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

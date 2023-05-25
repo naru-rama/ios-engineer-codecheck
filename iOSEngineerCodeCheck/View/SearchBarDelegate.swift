@@ -32,6 +32,7 @@ class SearchBarDelegate: NSObject, UISearchBarDelegate {
                 self.viewController?.tableView.reloadData()
             }
         }
+        searchBar.resignFirstResponder()
     }
     
 }
