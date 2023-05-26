@@ -17,10 +17,6 @@ class SearchBarDelegate: NSObject, UISearchBarDelegate {
         return true
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewController?.viewModel.items.removeAll()
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
