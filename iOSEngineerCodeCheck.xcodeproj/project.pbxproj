@@ -17,6 +17,7 @@
 		0213313E2A1E8666000229F1 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0213313D2A1E8666000229F1 /* DetailViewModel.swift */; };
 		021331452A1E8C87000229F1 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021331432A1E8C87000229F1 /* RepositoryCell.swift */; };
 		021331462A1E8C87000229F1 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021331442A1E8C87000229F1 /* RepositoryCell.xib */; };
+		025AE3F02A1FDBA7003D0867 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025AE3EF2A1FDBA7003D0867 /* SortViewController.swift */; };
 		BF0A658D244F2A3B00280FA6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
@@ -56,6 +57,7 @@
 		0213313D2A1E8666000229F1 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		021331432A1E8C87000229F1 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		021331442A1E8C87000229F1 /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
+		025AE3EF2A1FDBA7003D0867 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				021331392A1E7FDF000229F1 /* TableViewDelegateAndDataSource.swift */,
 				021331432A1E8C87000229F1 /* RepositoryCell.swift */,
 				021331442A1E8C87000229F1 /* RepositoryCell.xib */,
+				025AE3EF2A1FDBA7003D0867 /* SortViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				0213313C2A1E8633000229F1 /* SearchViewModel.swift in Sources */,
 				021331382A1E7F06000229F1 /* SearchBarDelegate.swift in Sources */,
 				021331302A1E4CD7000229F1 /* RepositoryService.swift in Sources */,
+				025AE3F02A1FDBA7003D0867 /* SortViewController.swift in Sources */,
 				0213313E2A1E8666000229F1 /* DetailViewModel.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 			);

@@ -8,9 +8,10 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, SortViewControllerDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var sortButton: UIBarButtonItem!
     
     var viewModel = SearchViewModel()
     let searchBarDelegate = SearchBarDelegate()
@@ -31,8 +32,32 @@ class SearchViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detail = segue.destination as? DetailViewController else { return }
-        detail.viewModel = DetailViewModel(item: viewModel.selectedItem())
+        if segue.identifier == "Detail" {
+            guard let detail = segue.destination as? DetailViewController else { return }
+            detail.viewModel = DetailViewModel(item: viewModel.selectedItem())
+        } else if segue.identifier == "Sort" {
+            guard let sortViewController = segue.destination as? SortViewController else { return }
+            sortViewController.delegate = self
+            sortViewController.sheetPresentationController?.detents = [.medium(), .large()]
+        }
+    }
+    
+    @IBAction func sortPressed(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "Sort", sender: self)
+    }
+    
+    func sortViewController(_ viewController: SortViewController, didChooseSortOption sortOption: String?, sortOrder: String?, perPage: Int?) {
+        viewModel.sortOption = sortOption
+        viewModel.sortOrder = sortOrder
+        guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
+        viewModel.fetchRepositoryData(keyword: searchKeyword) { (error) in
+            if let error = error {
+                print(error)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }
