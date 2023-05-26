@@ -13,9 +13,16 @@ class RepositoryService {
     static let shared = RepositoryService()
     private var dataTask: URLSessionDataTask?
 
-    func fetchRepositoryData(keyword: String, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
-        let urlString = "https://api.github.com/search/repositories?q=\(keyword)"
-        guard let url = URL(string: urlString) else { return }
+    func fetchRepositoryData(keyword: String, sort: String?, order: String?, perPage: Int?, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
+        var components = URLComponents(string: "https://api.github.com/search/repositories")
+        components?.queryItems = [
+            URLQueryItem(name: "q", value: keyword),
+            URLQueryItem(name: "sort", value: sort),
+            URLQueryItem(name: "order", value: order),
+            URLQueryItem(name: "per_page", value: String(perPage ?? 30))
+        ]
+        
+        guard let url = components?.url else { return }
 
         dataTask?.cancel()
         dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -36,3 +43,4 @@ class RepositoryService {
     }
     
 }
+

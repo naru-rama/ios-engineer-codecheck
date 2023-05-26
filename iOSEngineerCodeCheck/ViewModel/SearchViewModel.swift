@@ -13,13 +13,16 @@ class SearchViewModel {
     private let repositoryService: RepositoryService
     var items: [Item] = []
     var selectedRepositoryIndex: Int = 0
+    var sortOption: String?
+    var sortOrder: String?
+    var perPage: Int?
     
     init(repositoryService: RepositoryService = .shared) {
         self.repositoryService = repositoryService
     }
     
     func fetchRepositoryData(keyword: String, completion: @escaping (Error?) -> Void) {
-        repositoryService.fetchRepositoryData(keyword: keyword) { [weak self] result in
+        repositoryService.fetchRepositoryData(keyword: keyword, sort: sortOption, order: sortOrder, perPage: perPage) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.items = data.items
@@ -35,3 +38,4 @@ class SearchViewModel {
     }
     
 }
+

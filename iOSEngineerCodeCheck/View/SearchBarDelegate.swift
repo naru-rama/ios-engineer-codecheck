@@ -33,6 +33,7 @@ class SearchBarDelegate: NSObject, UISearchBarDelegate {
             }
         }
         searchBar.resignFirstResponder()
+        viewController?.sortButton.isEnabled = true
     }
     
 }

@@ -54,10 +54,18 @@
                             <outlet property="delegate" destination="MOh-CZ-3ki" id="A6Y-Dm-cjQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Repository Search" id="ktq-eC-ZBq"/>
+                    <navigationItem key="navigationItem" title="Repository Search" id="ktq-eC-ZBq">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Sort" style="done" id="F8b-YV-Uvw">
+                            <connections>
+                                <action selector="sortPressed:" destination="MOh-CZ-3ki" id="6rV-O3-6hQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="6rq-CD-Hob" id="3gq-mK-4M3"/>
+                        <outlet property="sortButton" destination="F8b-YV-Uvw" id="3RU-qS-362"/>
                         <segue destination="AHY-RL-7mG" kind="show" identifier="Detail" id="qqd-8W-4W1"/>
+                        <segue destination="WXe-Ga-tFQ" kind="presentation" identifier="Sort" id="2SO-6l-lkp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xer-fe-JeW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -189,7 +197,130 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rj0-Ld-RTn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="137"/>
+            <point key="canvasLocation" x="626" y="-182"/>
+        </scene>
+        <!--Sort View Controller-->
+        <scene sceneID="Ous-WE-97A">
+            <objects>
+                <viewController id="WXe-Ga-tFQ" customClass="SortViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Ts-F5-q2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWg-r4-FAp">
+                                <rect key="frame" x="159" y="804" width="96" height="62"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sort">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="40"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="sortButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="XZ6-hC-f1J"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="67" translatesAutoresizingMaskIntoConstraints="NO" id="4C7-WO-Lpj">
+                                <rect key="frame" x="83" y="724" width="248" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Oy-15-n7p">
+                                        <rect key="frame" x="0.0" y="0.0" width="90.5" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Desc">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="orderButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="wgS-jA-Stf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hur-E0-Xwk">
+                                        <rect key="frame" x="157.5" y="0.0" width="90.5" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Asc">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="orderButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="QMq-rN-dt8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="hbp-VW-sUl">
+                                <rect key="frame" x="37" y="570" width="340" height="114"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="63" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-si-gbf">
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cn4-qM-4NC">
+                                                <rect key="frame" x="0.0" y="0.0" width="138.5" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Stars">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="conditionButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="xsb-Yq-gEq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5o2-lF-jed">
+                                                <rect key="frame" x="201.5" y="0.0" width="138.5" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Forks">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="conditionButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="Bhn-zA-Imn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="67" translatesAutoresizingMaskIntoConstraints="NO" id="cw9-wV-VJU">
+                                        <rect key="frame" x="0.0" y="64" width="340" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbx-2u-7oV">
+                                                <rect key="frame" x="0.0" y="0.0" width="136.5" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Issues">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="conditionButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="LPQ-hZ-Tls"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsb-vr-M6m">
+                                                <rect key="frame" x="203.5" y="0.0" width="136.5" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Updated">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="conditionButtonPressed:" destination="WXe-Ga-tFQ" eventType="touchUpInside" id="3jH-bS-xzT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mNE-mn-2fd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SWg-r4-FAp" firstAttribute="centerX" secondItem="7Ts-F5-q2Z" secondAttribute="centerX" id="3Oi-Xe-reT"/>
+                            <constraint firstItem="4C7-WO-Lpj" firstAttribute="top" secondItem="hbp-VW-sUl" secondAttribute="bottom" constant="40" id="7OX-w8-nKV"/>
+                            <constraint firstItem="mNE-mn-2fd" firstAttribute="bottom" secondItem="SWg-r4-FAp" secondAttribute="bottom" constant="20" id="FJ9-VX-1y5"/>
+                            <constraint firstItem="hbp-VW-sUl" firstAttribute="centerX" secondItem="7Ts-F5-q2Z" secondAttribute="centerX" id="Kuv-5j-ujz"/>
+                            <constraint firstItem="SWg-r4-FAp" firstAttribute="top" secondItem="4C7-WO-Lpj" secondAttribute="bottom" constant="30" id="ZiR-l5-I4f"/>
+                            <constraint firstItem="4C7-WO-Lpj" firstAttribute="centerX" secondItem="7Ts-F5-q2Z" secondAttribute="centerX" id="ged-yG-s04"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ascButton" destination="Hur-E0-Xwk" id="BUx-gy-8AR"/>
+                        <outlet property="descButton" destination="2Oy-15-n7p" id="Sqv-Ta-Z0e"/>
+                        <outlet property="forkButton" destination="5o2-lF-jed" id="gBz-ah-IYn"/>
+                        <outlet property="issueButton" destination="cbx-2u-7oV" id="8CX-Tt-JyF"/>
+                        <outlet property="starButton" destination="cn4-qM-4NC" id="XBr-GT-BKF"/>
+                        <outlet property="updaatedButton" destination="qsb-vr-M6m" id="cq8-Pv-3IP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltb-e8-8JR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="624.63768115942037" y="602.67857142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hWi-qa-NBR">
