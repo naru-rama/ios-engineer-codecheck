@@ -10,6 +10,7 @@ import UIKit
 
 protocol SortViewControllerDelegate: AnyObject {
     func sortViewController(_ viewController: SortViewController, didChooseSortOption sortOption: String?, sortOrder: String?, perPage: Int?)
+    func resetCell()
 }
 
 class SortViewController: UIViewController {
@@ -76,6 +77,7 @@ class SortViewController: UIViewController {
     
     
     @IBAction func sortButtonPressed(_ sender: UIButton) {
+        delegate?.resetCell()
         delegate?.sortViewController(self, didChooseSortOption: sortOption, sortOrder: sortOrder, perPage: 30)
         dismiss(animated: true, completion: nil)
     }

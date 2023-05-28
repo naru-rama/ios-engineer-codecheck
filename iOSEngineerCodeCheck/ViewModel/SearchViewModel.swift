@@ -16,16 +16,25 @@ class SearchViewModel {
     var sortOption: String?
     var sortOrder: String?
     var perPage: Int?
+    var currentPage: Int = 1
+    var reachedEndOfData = false
     
     init(repositoryService: RepositoryService = .shared) {
         self.repositoryService = repositoryService
     }
     
     func fetchRepositoryData(keyword: String, completion: @escaping (Error?) -> Void) {
-        repositoryService.fetchRepositoryData(keyword: keyword, sort: sortOption, order: sortOrder, perPage: perPage) { [weak self] result in
+        if reachedEndOfData { return }
+        
+        repositoryService.fetchRepositoryData(keyword: keyword, sort: sortOption, order: sortOrder, page: currentPage, perPage: perPage) { [weak self] result in
             switch result {
             case .success(let data):
-                self?.items = data.items
+                self?.items += data.items
+                if data.items.count == 0 {
+                    self?.reachedEndOfData = true
+                } else {
+                    self?.currentPage += 1
+                }
                 completion(nil)
             case .failure(let error):
                 completion(error)

@@ -39,4 +39,19 @@ class TableViewDelegateAndDataSource: NSObject, UITableViewDelegate, UITableView
         viewController?.performSegue(withIdentifier: "Detail", sender: self)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (viewController?.viewModel.items.count ?? 0) - 1 {
+            guard let searchKeyword = viewController?.searchBar.text, !searchKeyword.isEmpty else { return }
+            
+            viewController?.viewModel.fetchRepositoryData(keyword: searchKeyword) { (error) in
+                if let error = error {
+                    print(error)
+                }
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
+    
 }

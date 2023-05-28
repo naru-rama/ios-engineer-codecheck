@@ -13,12 +13,13 @@ class RepositoryService {
     static let shared = RepositoryService()
     private var dataTask: URLSessionDataTask?
 
-    func fetchRepositoryData(keyword: String, sort: String?, order: String?, perPage: Int?, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
+    func fetchRepositoryData(keyword: String, sort: String?, order: String?, page:Int ,perPage: Int?, completion: @escaping (Result<RepositoryData, Error>) -> Void) {
         var components = URLComponents(string: "https://api.github.com/search/repositories")
         components?.queryItems = [
             URLQueryItem(name: "q", value: keyword),
             URLQueryItem(name: "sort", value: sort),
             URLQueryItem(name: "order", value: order),
+            URLQueryItem(name: "page", value: String(page)),
             URLQueryItem(name: "per_page", value: String(perPage ?? 30))
         ]
         
