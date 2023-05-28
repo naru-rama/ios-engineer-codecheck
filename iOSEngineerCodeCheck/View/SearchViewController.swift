@@ -60,4 +60,10 @@ class SearchViewController: UITableViewController, SortViewControllerDelegate {
         }
     }
     
+    func resetCell() {
+        viewModel.items.removeAll()
+        viewModel.currentPage = 1
+        tableView.reloadData()
+    }
+    
 }

@@ -18,6 +18,7 @@ class SearchBarDelegate: NSObject, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewController?.resetCell()
         guard let searchKeyword = searchBar.text, !searchKeyword.isEmpty else { return }
         
         viewController?.viewModel.fetchRepositoryData(keyword: searchKeyword) { (error) in
